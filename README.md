@@ -57,26 +57,37 @@ Executar o arquivo gerado com Node.js.
 node dist/index.js
 ```
 
-Baixar os arqbuivos do git
+
+## Como enviar e baixar os arquivos do GitHub
+
+Baixar os arquivos do Git.
 ```
-git clone --b <nome da branch>  <repositório> .
-git clone --branch develop  git@github.com:MarceloJoia/react-node22.git .
+git clone -b <branch_name> <repository_url> .
 ```
 
-Verificar a branch 
+Verificar em qual está branch.
 ```
-git branch
+git branch 
 ```
 
-UPDATE - Verificar se algum outro Dev enviou uma atualização. 
-Se tivesse alguma alteração, seria feito o download
+Baixar as atualizações do GitHub.
 ```
 git pull
 ```
 
+Adicionar todos os arquivos modificados no staging area - área de preparação.
+```
+git add .
+```
 
+commit representa um conjunto de alterações em um ponto específico da história do seu projeto, registra apenas as alterações adicionadas ao índice de preparação.
+O comando -m permite que insira a mensagem de commit diretamente na linha de comando.
+```
+git commit -m "Base projeto"
+```
 
-
-
-
-
+Enviar os commits locais, para um repositório remoto.
+```
+git push <remote> <branch>
+git push origin develop
+```
