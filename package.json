@@ -1,0 +1,19 @@
+{
+  "name": "celke",
+  "version": "1.0.0",
+  "description": "Curso Full Stack de React e Node.js - Turma 3 - Criar a base da API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcelo Joia",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.8",
+    "ts-node": "^10.9.2"
+  }
+}
