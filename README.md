@@ -1,6 +1,7 @@
 ## Requisitos
 
 * Node.js 22 ou superior - Conferir a versão: node -v
+* MySQL 8 ou superior - Conferir a versão: mysql --version
 
 ## Como rodar o projeto baixado
 
@@ -60,6 +61,28 @@ npm install --save-dev concurrently
 Compilar o arquivo TypeScript. Executar o arquivo gerado.
 ```
 npm run start:watch
+```
+
+### MySQL
+
+Iniciar o MySQL no PowerShell como Admin
+```
+net start mysql80
+```
+
+Acessar o MySQL no terminal
+```
+mysql -h localhost -u root -p
+```
+
+Mostrar bancos de dados
+```
+SHOW DATABASES;
+```
+
+Sair do MySQL
+```
+exit
 ```
 
 
