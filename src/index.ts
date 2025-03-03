@@ -1,15 +1,22 @@
 // Importar a biblioteca Express "No formato TypeScript"
-import express, { Request, Response } from "express";
+import express from "express";
+
 
 // criar a aplicação Express
 const app = express();
 
-// Criar a rota GET principal
-app.get("/", (req: Request, res: Response) => {
-    res.send("Bem-vindo Marcelo!");
-});
+
+// Incluir a Controller
+import login from './controllers/login';
+
+
+// Criar as rotas. Express para gerenciar as requisições, rotas e URLs, entre outra funcionalidades.
+app.use('/', login);
+
 
 // Iniciar o serrvidor na porta 8080
 app.listen(8080, () => {
     console.log("Servidor iniciado na porta 8080: http://localhost:8080");
 });
+
+
