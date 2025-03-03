@@ -9,14 +9,9 @@ Instalar todas as dependencias indicada pelo package.json.
 npm install
 ```
 
-Compilar o arquivo TypeScript.
+Compilar o arquivo TypeScript. Executar o arquivo gerado.
 ```
-npx tsc
-```
-
-Executar o arquivo gerado com Node.js.
-```
-node dist/index.js
+npm run dev
 ```
 
 ## Sequencia para criar o projeto
@@ -55,6 +50,16 @@ npx tsc
 Executar o arquivo gerado com Node.js.
 ```
 node dist/index.js
+```
+
+Instalar a dependência de forma global, "-g" significa globalmente. Executar o comando através do prompt de comando, executar somente se nunca instalou a dependência na maquina, após instalar, reiniciar o PC.
+```
+npm install -g nodemon
+```
+
+Compilar o arquivo TypeScript. Executar o arquivo gerado.
+```
+npm run dev
 ```
 
 
