@@ -5,6 +5,9 @@
 
 ## Como rodar o projeto baixado
 
+Duplicar o arquivo ".env.example" e renomear para ".env".<br>
+Alterar no arquivo .env as credenciais do banco de dados<br>
+
 Instalar todas as dependencias indicada pelo package.json.
 ```
 npm install
@@ -14,6 +17,12 @@ Compilar o arquivo TypeScript. Executar o arquivo gerado.
 ```
 npm run start:watch
 ```
+
+Executar as migrations para criar as tabelas no banco de dados.
+```
+npx typeorm migration:run -d dist/data-source.js
+```
+
 
 ## Sequencia para criar o projeto
 
@@ -196,3 +205,66 @@ Enviar os commits locais, para um repositório remoto.
 git push <remote> <branch>
 git push origin develop
 ```
+
+
+
+
+### Check List para criar Entidade(Entity), Seed e Cadastra no Bonco de dados
+Entity
+	Product.ts
+	ProductCategory.ts
+	ProductSituation.ts
+
+1)data-source.ts
+    a) Preparar o [ data-source.ts ]
+    ```
+    // Importar a bibliotéca com as variáveis de ambiente .env
+    import dotenv from "dotenv";
+    // Carregar as variáveis de ambiente
+    dotenv.config();
+    ```
+    b) Acrecentar as entidades no array de [ entities ]
+    ```
+    entities: [Situation, User],
+    ```
+    c) Tirar da login.ts [ Que será renomeado para AuthController.ts ] a conexão com o banco de dados.
+    ATENÇÃO: Após renomear o arquivo, verificar na index.ts se o caminho foi atualizado.
+    ```
+    // Fazer a conexão com o bamco de dados
+    AppDataSource.initialize()
+        .then(() => {
+            console.log("Secesso! Conexão com o Banco de Dados realizada.");
+        })
+        .catch((error) => {
+            console.log("Error! Conexão com o Banco de Dados não realizada.", error);
+        });
+
+    ```
+
+2)Agustar: data_source.ts
+    a) Incluir as Entidades
+
+3)Criar as Migrattion
+    a) Criar a Migration
+    ```
+    npx typeorm migration:create src/migration/CreateProductsCategoriesTable
+    ```
+    b) Rodar a Migrate - Arquivo COMPILADO
+    ```
+    npx typeorm migration:run -d dist/data-source.js
+    ```
+
+4)Implementar as Controllers
+    a) Usar como exemlo [SituationController.ts]
+    b) Acrescentar as rotas na [index.ts]
+        // Incluir a Controller
+        import AuthController from './controllers/AuthController';
+        // Criar as rotas.
+        app.use('/', AuthController);
+    
+
+
+
+
+
+

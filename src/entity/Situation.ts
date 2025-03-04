@@ -7,7 +7,7 @@ import { User } from "./User";
  * @Entity() - É o nome da tabela
  * Desenho da tablela que será implementada no Banco de dados
  */
-@Entity()
+@Entity("situations")
 export class Situation {
     /** 
      * @PrimaryGeneratedColumn()

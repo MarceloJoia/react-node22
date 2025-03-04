@@ -11,10 +11,12 @@ dotenv.config();
 const app = express();
 
 // Incluir a Controller
-import login from './controllers/login';
+import AuthController from './controllers/AuthController';
+import SituationController from './controllers/SituationController';
 
 // Criar as rotas. Express para gerenciar as requisições, rotas e URLs, entre outra funcionalidades.
-app.use('/', login);
+app.use('/', AuthController);
+app.use('/', SituationController);
 
 // Iniciar o serrvidor na porta definida na variável de ambiente .env
 app.listen(process.env.PORT, () => {
