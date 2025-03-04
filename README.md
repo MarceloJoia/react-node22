@@ -85,6 +85,37 @@ Sair do MySQL
 exit
 ```
 
+Crair base da dados
+```
+CREATE DATABASE joia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+
+### TypeORM
+1. Instale o pacote npm:
+```
+npm install typeorm --save
+```
+
+2. Você precisa instalar reflect-metadatao calço:
+```
+npm install reflect-metadata --save
+```
+
+3. Instalar um driver de banco de dados:
+```
+npm install mysql2 --save
+```
+
+
+
+```
+
+```
+
+
+
+
 
 ## Como enviar e baixar os arquivos do GitHub
 
