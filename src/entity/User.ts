@@ -3,8 +3,10 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "t
 // Importar a Entidade Situação
 import { Situation } from "./Situation";
 
-
-
+/**
+ * @Entity() - É o nome da tabela
+ * Desenho da tablela que será implementada no Banco de dados
+ */
 @Entity("users")
 
 // User - É o nome da tabela

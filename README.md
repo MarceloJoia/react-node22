@@ -149,15 +149,19 @@ npm install mysql2 --save
 ```
 
 4. Migration
-Situação Migration
-```
-npx typeorm migration:create src/migration/CreateSituationsTable
-```
-Usuário Migration
-```
-npx typeorm migration:create src/migration/CreateUsersTable
-```
+    1. Situação Migration
+    ```
+    npx typeorm migration:create src/migration/CreateSituationsTable
+    ```
+    2. Usuário Migration
+    ```
+    npx typeorm migration:create src/migration/CreateUsersTable
+    ```
 
+    3. Cria as tabelas no banco de dados - Arquivo COMPILADO
+    ```
+    npx typeorm migration:run -d dist/data-source.js
+    ```
 
 ## Como enviar e baixar os arquivos do GitHub
 

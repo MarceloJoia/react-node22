@@ -3,6 +3,7 @@ import express from "express";
 
 // 1) Importar a bibliotéca com as variáveis de ambiente .env
 import dotenv from "dotenv";
+
 // 2) Carregar as variáveis de ambiente
 dotenv.config();
 

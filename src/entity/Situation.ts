@@ -3,7 +3,10 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "ty
 // Importar a Entidade Usuário
 import { User } from "./User";
 
-// @Entity() - É o nome da tabela
+/**
+ * @Entity() - É o nome da tabela
+ * Desenho da tablela que será implementada no Banco de dados
+ */
 @Entity()
 export class Situation {
     /** 
