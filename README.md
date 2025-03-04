@@ -118,13 +118,27 @@ PORT=8080
 ```
 
 
-### TypeORM
+### TypeORM (migrations)
+MyProject
+├── src                   // place of your TypeScript code
+│   ├── entity            // place where your entities (database models) are stored
+│   │   └── User.ts       // sample entity
+│   ├── migration         // place where your migrations are stored
+│   ├── data-source.ts    // data source and all connection configuration
+│   └── index.ts          // start point of your application
+├── .gitignore            // standard gitignore file
+├── package.json          // node module dependencies
+├── README.md             // simple readme file
+└── tsconfig.json         // TypeScript compiler options
+
+
+
 1. Instale o pacote npm:
 ```
 npm install typeorm --save
 ```
 
-2. Você precisa instalar reflect-metadatao calço:
+2. Instalar a Biblioteca utilizada na TypeScript para adicionar Metadados(Informações adicionais) a classe.
 ```
 npm install reflect-metadata --save
 ```
@@ -134,14 +148,15 @@ npm install reflect-metadata --save
 npm install mysql2 --save
 ```
 
-
-
+4. Migration
+Situação Migration
 ```
-
+npx typeorm migration:create src/migration/CreateSituationsTable
 ```
-
-
-
+Usuário Migration
+```
+npx typeorm migration:create src/migration/CreateUsersTable
+```
 
 
 ## Como enviar e baixar os arquivos do GitHub

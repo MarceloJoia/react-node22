@@ -1,8 +1,7 @@
-import { parse } from "path";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
-const dialect = process.env.DB_DIALECT ? process.env.DB_DIALECT : 'mysql'
+const dialect = process.env.DB_DIALECT ?? "mysql";
 
 export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
