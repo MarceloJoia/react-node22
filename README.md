@@ -64,30 +64,57 @@ npm run start:watch
 ```
 
 ### MySQL
-
-Iniciar o MySQL no PowerShell como Admin
+1. Iniciar o MySQL no PowerShell como Admin
 ```
 net start mysql80
 ```
-
-Acessar o MySQL no terminal
+2. Acessar o MySQL no terminal
 ```
 mysql -h localhost -u root -p
 ```
-
-Mostrar bancos de dados
+3. Mostrar bancos de dados
 ```
 SHOW DATABASES;
 ```
-
-Sair do MySQL
+4. Sair do MySQL
 ```
 exit
 ```
-
-Crair base da dados
+5. Crair base da dados
 ```
 CREATE DATABASE joia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### ENV
+1. Manipular variáveis de ambiente.
+```
+npm install dotenv --save
+```
+
+2. Instalar os tipos do TypeScript.
+```
+npm install --save-dev @types/dotenv
+```
+3. Criar o arquivo .env na raiz
+```
+.env
+```
+4. Propular .env
+
+```
+TIME_ZONE=America/Sao_Paulo
+
+TIME_ZONE=America/Sao_Paulo
+
+DB_USERNAME="" # Usuário do banco de dados
+DB_PASSWORD="" # Senha do banco de dados
+DB_DATABASE="" # Base de dados
+DB_HOST="localhost" # Local do banco de dados
+DB_DIALECT='mysql' # Tipo do banco de dados
+DB_PORT=3306 # Tipo do banco de dados
+
+PORT=8080
+
 ```
 
 

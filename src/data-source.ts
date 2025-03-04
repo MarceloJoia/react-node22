@@ -1,13 +1,16 @@
+import { parse } from "path";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
+const dialect = process.env.DB_DIALECT ? process.env.DB_DIALECT : 'mysql'
+
 export const AppDataSource = new DataSource({
-    type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "zaq1xsw2",
-    database: "joia",
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    host: process.env.DB_HOST,
+    type: dialect as "mysql" | "mariadb",
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
     synchronize: false, // Evite usar isso em produção
     logging: true,
     entities: [],
