@@ -210,6 +210,7 @@ git push origin develop
 
 
 ### Check List para criar Entidade(Entity), Seed e Cadastra no Bonco de dados
+- Search: TypeORM
 Entity
 	Product.ts
 	ProductCategory.ts
@@ -248,7 +249,10 @@ Entity
     a) Criar a Migration
     ```
     npx typeorm migration:create src/migration/CreateProductsCategoriesTable
+    npx typeorm migration:create src/migration/CreateProductsSituationsTable
+    npx typeorm migration:create src/migration/CreateProductsTable
     ```
+    
     b) Rodar a Migrate - Arquivo COMPILADO
     ```
     npx typeorm migration:run -d dist/data-source.js
@@ -262,6 +266,9 @@ Entity
         // Criar as rotas.
         app.use('/', AuthController);
     
+
+
+### Thunder client Dados de teste para a API
 
 
 

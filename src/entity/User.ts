@@ -38,14 +38,13 @@ export class User {
      * Muitos-para-um(Many-to-one) / um-para-muitos(one-to-many) é uma relação onde A contém múltiplas instâncias de B, mas B contém apenas uma instância de A. 
      * Vamos tomar como exemplo Usere PhotoEntidades. O usuário pode ter múltiplas fotos, mas cada foto é de propriedade de apenas um único usuário.
      */
-    // @ManyToOne(type => Category)
     @ManyToOne(() => Situation, (situation) => situation.users) // Nome da tabela é (situation)
     // Este DECORATOR é opcional para @ManyToOne, mas obrigatório para @OneToOne
     @JoinColumn({ name: "situationId" }) //Nome da chave estrangeira
     situation!: Situation; // situation!: RECEBE O QUE VIER DA ENTIDADE Situation
 
-    @Column()
-    situationId!: string;
+    // @Column()
+    // situationId!: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt!: Date;

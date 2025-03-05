@@ -11,16 +11,21 @@ import { Situation } from "../entity/Situation";
 const router = express.Router();
 
 // Criar a rota GET principal URL: http://localhost:8080/situacoes
-router.get("/situacoes", async (req: Request, res: Response) => {
+router.post("/situacoes", async (req: Request, res: Response) => {
+
+    // console.log(`Dados: ${req.body}`);
+    // console.log(req.body);
 
     try {
+        // Receber os dados enviados no coro da requisição
+        var data = req.body;
+
         // Criar a instancia do repositório de Situação
         const situationRepository = AppDataSource.getRepository(Situation);
 
         // Criar um novo registro da Situação (dados Simulados)
-        const newSituation = situationRepository.create({
-            nameSituation: "Ativo", // Valor fixo para simuar o cadastro
-        });
+        const newSituation = situationRepository.create(data); // Valor dinâmico retornado do banco
+        // const newSituation = situationRepository.create(req.body); // Valor dinâmico retornado do banco
 
         // Salvar o registro no banco de dados
         await situationRepository.save(newSituation);
