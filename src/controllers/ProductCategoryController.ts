@@ -2,16 +2,56 @@
 import express, { Request, Response } from "express";
 
 // Importar a conexão com o banco de dados
-import { AppDataSource } from "../data-source";
-// Importar a entidade
-import { ProductCategory } from "../entity/ProductCategory";
-
+import { AppDataSource } from "../data-source"; // Importar a entidade
+import { ProductCategory } from "../entity/ProductCategory"; // Importar a entidade
 
 // criar a aplicação Express
 const router = express.Router();
 
-// Criar a rota para listar as categorias
+// VISUALIZAR (criar rota) - Criar a rota para LISTAR as Categorias do Produto
 // Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/produto-categorias
+router.get("/produto-categorias", async (req: Request, res: Response) => {
+
+    // res.send("Listar Categorias");
+
+    try {
+        // Crindo uma instancia da entidade ProductCategory
+        const productCategoryRepository = AppDataSource.getRepository(ProductCategory);
+
+        // Fazer a consulta no bancode dados para retornar TODAS as Categorias do produto.
+        const productCategory = await productCategoryRepository.find();
+
+        // Retornar uma resposta sobre a consulta feita a cima 
+        res.status(200).json({ productCategory });
+
+        // Matar o precessamento
+        return;
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Erro! Não foi possível listar as categorias do produto."
+        });
+
+        // Matar o precessamento
+        return;
+    }
+});
+
+
+
+
+
+
+// CADASTRAR (criar rota) - Criar a rota para cadastrar as Categorias do Produto
+// Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/produto-categorias
+// A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
+
+// Dados em formato de objeto
+/*
+{
+    "name": "Ativo",
+}
+*/
 router.post("/produto-categorias", async (req: Request, res: Response) => {
 
     try {
