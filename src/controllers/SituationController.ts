@@ -41,7 +41,7 @@ router.post("/situacoes", async (req: Request, res: Response) => {
         // console.log(error);
 
         res.status(500).json({
-            message: "Erro! Situação não cadastrada.",
+            message: "Erro! Situação não pode ser cadastrada.",
         });
     }
 });

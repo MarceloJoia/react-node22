@@ -37,7 +37,7 @@ router.get("/produto-categorias", async (req: Request, res: Response) => {
         console.log(error);
 
         res.status(500).json({
-            message: "Erro! Produto não cadastrado.",
+            message: "Erro! Produto não pode ser cadastrado.",
         });
     }
 });

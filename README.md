@@ -23,6 +23,7 @@ Executar as migrations para criar as tabelas no banco de dados.
 npx typeorm migration:run -d dist/data-source.js
 ```
 
+Importar a collection do diretório "Thunder-client" para o Thunder Client no VC Code.<br>
 
 ## Sequencia para criar o projeto
 
@@ -71,6 +72,9 @@ Compilar o arquivo TypeScript. Executar o arquivo gerado.
 ```
 npm run start:watch
 ```
+
+Importar a collection do diretório "Thunder-Client" para o Thunder Client
+
 
 ### MySQL
 1. Iniciar o MySQL no PowerShell como Admin
