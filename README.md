@@ -1,5 +1,8 @@
 ## Requisitos
 
+Path: File/Preferencias/Configurações 
+Procurar por [stickyScroll] e desativar
+
 * Node.js 22 ou superior - Conferir a versão: node -v
 * MySQL 8 ou superior - Conferir a versão: mysql --version
 

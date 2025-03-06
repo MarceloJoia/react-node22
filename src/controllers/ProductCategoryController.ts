@@ -37,6 +37,49 @@ router.get("/produto-categorias", async (req: Request, res: Response) => {
     }
 });
 
+// Rota para visualizar uma única Categoria do Produto
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/produto-categorias/:id
+// const { id } -> Desestruturação: Pega apenas o que for indicado na desestruturação
+router.get("/produto-categorias/:id", async (req: Request, res: Response) => {
+    // res.send("Listar uma única categoria!");
+
+    try {
+        // Obter o ID da Categoria do Produto partir dos parâmetros da requisição
+        const { id } = req.params; // [fazer um desestruturação]
+
+        // Obter o repositório da entidade Categoria do Produto
+        const productCategoryRepository = AppDataSource.getRepository(ProductCategory);
+
+        // Buscar a Categoria do Produto no banco de dados pelo ID
+        const productCategory = await productCategoryRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a Categoria do Produto foi encontrada
+        if (!productCategory) {
+            res.status(404).json({
+                message: "Categoria do prtoduto não encontrada."
+            });
+            // Mata o processamento
+            return;
+        }
+
+        // Retornar a Categoria do Produto encontrada
+        res.status(200).json({ productCategory });
+
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Erro! Não foi possível apresentar a Categorias do Produto."
+        });
+        // Matar o precessamento
+        return;
+    }
+});
+
+
+
+
 
 
 
@@ -55,10 +98,10 @@ router.get("/produto-categorias", async (req: Request, res: Response) => {
 router.post("/produto-categorias", async (req: Request, res: Response) => {
 
     try {
-        // Criar a instancia do repositório de Situação
+        // Criar a instancia do repositório de Produto
         const productCategoryRepository = AppDataSource.getRepository(ProductCategory);
 
-        // Criar um novo registro de situação (dados simulados)
+        // Criar um novo registro de Produto (dados simulados)
         const newProductCategory = productCategoryRepository.create(req.body);
 
         // Salvar o registro no banco de dados

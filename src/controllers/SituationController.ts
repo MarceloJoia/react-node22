@@ -6,17 +6,14 @@ import { AppDataSource } from "../data-source";
 // Importar a entidade
 import { Situation } from "../entity/Situation";
 
-
 // criar a aplicação Express
 const router = express.Router();
 
-
 // VISUALIZAR (rota) - Criar a rota para LISTAR as Situações
-// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/situations
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/situacoes
 router.get("/situacoes", async (req: Request, res: Response) => {
-
     // res.send("Listar");
-    
+
     try {
         // Obter o repositório da entidade Situation
         const situationRepository = AppDataSource.getRepository(Situation);
@@ -41,9 +38,54 @@ router.get("/situacoes", async (req: Request, res: Response) => {
 });
 
 
+// Rota para visualizar uma situação específica
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/situacoes/:id
+// const { id } -> Desestruturação: Pega apenas o que for indicado na desestruturação
+router.get("/situacoes/:id", async (req: Request, res: Response) => {
+    // res.send("Listar uma única Situação");
+
+    try {
+        // Obter o ID da situação a partir dos parâmetros da requisição [fazer um desestruturação]
+        const { id } = req.params; // Pega apenas o id
+
+        // Obter o repositório da entidade Situation
+        const situationRepository = AppDataSource.getRepository(Situation);
+
+        // Buscar a situação no banco de dados pelo ID
+        const situation = await situationRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a situação foi encontrada
+        if (!situation) {
+            res.status(404).json({
+                message: "Atensão! Situação não encontrada!"
+            });
+            // Mata o processamento
+            return;
+        }
+
+        // Retornar a situação encontrada
+        res.status(200).json({ situation });
+
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Erro! Não encontramos essa situação."
+        });
+        // Mata o processamento
+        return;
+    }
+});
+
+
+
+
+
+
 
 // CADASTRAR (rota) - Criar a rota para cadastrar a Situação
-// Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/situations
+// Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/situacoes
 // A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
 // Dados em formato de objeto
 /*

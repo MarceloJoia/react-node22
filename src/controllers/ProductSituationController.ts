@@ -40,6 +40,48 @@ router.get("/produto-situacao", async (req: Request, res: Response) => {
     }
 });
 
+// Rota para visualizar uma situação de uma categoria específica
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/produto-situacao/:id
+// const { id } -> Desestruturação: Pega apenas o que for indicado na desestruturação
+router.get("/produto-situacao/:id", async (req: Request, res: Response) => {
+
+    try {
+        // Obter o ID da situação a partir dos parâmetros da requisição [fazer um desestruturação]
+        const { id } = req.params;
+
+        // Obter o repositório da entidade Situation do Produto
+        const productSituationRepository = AppDataSource.getRepository(ProductSituation);
+
+        // Buscar a situação no banco de dados pelo ID
+        const productSituation = await productSituationRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a situação foi encontrada
+        if (!productSituation) {
+            res.status(404).json({
+                message: "Situação da categoria não encontrada."
+            });
+
+            // Mata o processamento
+            return;
+        }
+
+        // Retornar a situação encontrada
+        res.status(200).json({ productSituation });
+
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Erro! Não encontramos essa situação para o produto."
+        });
+
+        // Mata o processamento
+        return;
+    }
+});
+
+
 
 
 

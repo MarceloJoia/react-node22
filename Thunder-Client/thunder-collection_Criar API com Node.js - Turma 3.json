@@ -1,0 +1,175 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Criar API com Node.js - Turma 3",
+    "collectionId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+    "dateExported": "2025-03-06T18:53:26.570Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "a9eabcd6-cfdf-4bda-90c8-c11de847318e",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2025-03-05T19:59:21.937Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "e8c53ea2-9044-448c-8b0e-863a866006f5",
+            "name": "Situação",
+            "containerId": "",
+            "created": "2025-03-05T19:59:21.938Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "a50368f9-0b03-4518-9365-e71a74a3d663",
+            "name": "Situação do Produto",
+            "containerId": "",
+            "created": "2025-03-05T20:13:35.095Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "80fe221c-0cfd-4734-9d5c-46d1556b68d5",
+            "name": "Categoria do Produto",
+            "containerId": "",
+            "created": "2025-03-06T14:33:50.411Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "63038551-6dfd-4d3e-8849-7b3dfd33b291",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "e8c53ea2-9044-448c-8b0e-863a866006f5",
+            "name": "List Situações",
+            "url": "http://localhost:8080/situacoes",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2025-03-06T15:19:57.081Z",
+            "modified": "2025-03-06T15:24:42.049Z",
+            "headers": []
+        },
+        {
+            "_id": "b2950343-0fba-4e84-af06-b8fd703ee590",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "a9eabcd6-cfdf-4bda-90c8-c11de847318e",
+            "name": "Login",
+            "url": "http://localhost:8080",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-03-05T19:59:21.937Z",
+            "modified": "2025-03-05T19:59:21.937Z",
+            "headers": []
+        },
+        {
+            "_id": "340e2f5b-4a6c-4da6-bd51-ac5fd87686a3",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "a50368f9-0b03-4518-9365-e71a74a3d663",
+            "name": "List Situação do Produto",
+            "url": "http://localhost:8080/produto-situacao",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-03-06T16:54:51.101Z",
+            "modified": "2025-03-06T16:55:08.076Z",
+            "headers": []
+        },
+        {
+            "_id": "4bf43317-048d-4b3f-a536-3210b71064f4",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "e8c53ea2-9044-448c-8b0e-863a866006f5",
+            "name": "View Situação",
+            "url": "http://localhost:8080/situacoes/1",
+            "method": "GET",
+            "sortNum": 22500,
+            "created": "2025-03-06T18:04:42.507Z",
+            "modified": "2025-03-06T18:20:55.057Z",
+            "headers": []
+        },
+        {
+            "_id": "ba70640c-ce3d-4ac9-bcb8-49868b5a0338",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "e8c53ea2-9044-448c-8b0e-863a866006f5",
+            "name": "Create",
+            "url": "http://localhost:8080/situacoes",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-03-05T19:59:21.938Z",
+            "modified": "2025-03-05T19:59:21.938Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameSituation\": \"Dascadastrado\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6f8e220b-b96a-4723-9a5b-4e278b6ff6ea",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "80fe221c-0cfd-4734-9d5c-46d1556b68d5",
+            "name": "List Categorias do Produto",
+            "url": "http://localhost:8080/produto-categorias",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2025-03-06T17:17:34.776Z",
+            "modified": "2025-03-06T17:17:44.540Z",
+            "headers": []
+        },
+        {
+            "_id": "5da9aa1d-9cf2-4cff-a36d-96b62f1abdf6",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "a50368f9-0b03-4518-9365-e71a74a3d663",
+            "name": "View Situação do produto",
+            "url": "http://localhost:8080/produto-situacao/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2025-03-06T18:34:16.317Z",
+            "modified": "2025-03-06T18:52:47.008Z",
+            "headers": []
+        },
+        {
+            "_id": "24a46b2f-5c99-4aa4-a4af-d07a56688209",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "a50368f9-0b03-4518-9365-e71a74a3d663",
+            "name": "Create Product Situation",
+            "url": "http://localhost:8080/produto-situacao",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2025-03-05T20:14:28.062Z",
+            "modified": "2025-03-06T17:03:59.830Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n   \"name\": \"Spam\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2a3c4e4c-9be9-49b4-b669-a12a31b2e0d0",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "80fe221c-0cfd-4734-9d5c-46d1556b68d5",
+            "name": "View Category Product",
+            "url": "http://localhost:8080/produto-categorias/3",
+            "method": "GET",
+            "sortNum": 45000,
+            "created": "2025-03-06T18:41:42.216Z",
+            "modified": "2025-03-06T18:41:59.429Z",
+            "headers": []
+        },
+        {
+            "_id": "3cfa2f99-6ade-47b6-a0a5-a36cc0662481",
+            "colId": "9766149f-91ad-4e17-a1e8-b379cd2a3eb7",
+            "containerId": "80fe221c-0cfd-4734-9d5c-46d1556b68d5",
+            "name": "Create Cartegory",
+            "url": "http://localhost:8080/produto-categorias",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2025-03-06T14:34:20.681Z",
+            "modified": "2025-03-06T14:36:46.604Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Casa\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "yL0wbNElFzA2kJORe3UNVTWd_XKTDAguPRLia3e49gdFj8jj_egkhNbbybQxxktgeLmWuX2WCAl3-bipkVmlIw"
+}
