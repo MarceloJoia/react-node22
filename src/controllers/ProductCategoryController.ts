@@ -79,12 +79,6 @@ router.get("/produto-categorias/:id", async (req: Request, res: Response) => {
 
 
 
-
-
-
-
-
-
 // CADASTRAR (criar rota) - Criar a rota para cadastrar as Categorias do Produto
 // Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/produto-categorias
 // A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
@@ -119,6 +113,76 @@ router.post("/produto-categorias", async (req: Request, res: Response) => {
         });
     }
 });
+
+
+
+
+// Criar a rota para editar uma Categoria do Produto
+// Endereço para acessar a API através da aplicação externa com o verbo PUT: http://localhost:8080/produto-categorias/:id
+// A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
+// Dados em formato de objeto
+/*
+{
+    "nameSituation": "Ativo"
+}
+*/
+router.put("/produto-categorias/:id", async (req: Request, res: Response) => {
+    // res.send("Categoria do Produto editar");
+
+    // ProductCategory
+    try {
+        // Obter o ID da Categoria do Produto partir dos parâmetros da requisição
+        const { id } = req.params;// Desestruturação
+
+        // Pegar o que está vindo no corpo da requisição
+        const data = req.body;
+
+        // Obter o repositório da entidade ProductSituation
+        const productCategoryRepository = AppDataSource.getRepository(ProductCategory);
+
+        // Buscar a ProductSituation no banco de dados pelo ID
+        const productCategory = await productCategoryRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a ProductSituation foi encontrada
+        if (!productCategory) {
+            res.status(500).json({
+                message: "Categoria do prtoduto não encontrada."
+            });
+            // Mata o processamento
+            return;
+        }
+
+        // Atualizar os dados do ProductSituation
+        productCategoryRepository.merge(productCategory, data);
+
+        // Salvar as alterações no banco de dados
+        const updateProductCategory = await productCategoryRepository.save(productCategory);
+
+        // Retornar resposta de sucesso
+        res.status(201).json({
+            message: "Sucesso! Categoria do Produto editada.",
+            productCategory: updateProductCategory
+        });
+
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        // Retornar resposta de Erro
+        res.status(500).json({
+            message: "Erro! Categoria do Produto não pode ser editada.",
+        });
+        // Mata o processamento
+        return;
+    }
+});
+
+
+
+
+
+
+
 
 // Exportar a instrução que está dentro da constante router
 export default router;

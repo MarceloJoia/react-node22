@@ -176,7 +176,7 @@ router.put("/situacoes/:id", async (req: Request, res: Response) => {
     } catch (error) {
         // Retornar resposta de Erro
         res.status(500).json({
-            message: "Erro! Situação não pode ser Editada.",
+            message: "Erro! Situação não pode ser editada.",
         });
         // Mata o processamento
         return;

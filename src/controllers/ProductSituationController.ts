@@ -11,7 +11,7 @@ import { ProductSituation } from "../entity/ProductSituation";
 const router = express.Router();
 
 
-// VISUALIZAR (rota) - Criar a rota para LISTAR as Situações
+// Criar a rota para LISTAR as Situações
 // Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/produto-situacao
 router.get("/produto-situacao", async (req: Request, res: Response) => {
 
@@ -85,7 +85,7 @@ router.get("/produto-situacao/:id", async (req: Request, res: Response) => {
 
 
 
-// CADASTRAR (rota) - Criar a rota para cadastrar a as categorias.
+// Criar a rota para cadastrar a as categorias.
 // Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/produto-situacao
 // A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
 // Dados em formato de objeto
@@ -121,6 +121,73 @@ router.post("/produto-situacao", async (req: Request, res: Response) => {
         });
     }
 });
+
+
+// Criar a rota para editar uma Situação do Produto
+// Endereço para acessar a API através da aplicação externa com o verbo PUT: http://localhost:8080/produto-situacao/:id
+// A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
+// Dados em formato de objeto
+/*
+{
+    "nameSituation": "Ativo"
+}
+*/
+router.put("/produto-situacao/:id", async (req: Request, res: Response) => {
+
+    // res.send("Editar Situação do Produto");
+    try {
+        // Obter o ID da situação a partir dos parâmetros da requisição
+        const { id } = req.params;// Desestruturação
+
+        // Receber os dados enviados no corpo da requisição
+        const data = req.body;
+
+        // Obter o repositório da entidade ProductSituation
+        const productSituationRepository = AppDataSource.getRepository(ProductSituation);
+
+        // Buscar a ProductSituation no banco de dados pelo ID
+        const productSituation = await productSituationRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a ProductSituation foi encontrada
+        if (!productSituation) {
+            res.status(404).json({
+                message: "Situação da categoria não encontrada."
+            });
+            // Mata o processamento
+            return;
+        }
+
+        // Atualizar os dados do ProductSituation
+        productSituationRepository.merge(productSituation, data);
+
+        // Salvar as alterações no banco de dados
+        const updateProductSituation = await productSituationRepository.save(productSituation);
+
+        // Retornar resposta de sucesso
+        res.status(201).json({
+            message: "Sucesso! Situação do produto editada.",
+            productSituation: updateProductSituation
+        });
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        // Retornar resposta de Erro
+        res.status(500).json({
+            message: "Erro! Situação do produto não pode ser editada.",
+        });
+        // Mata o processamento
+        return;
+    }
+});
+
+
+
+
+
+
+
+
 
 // Exportar a instrução que está dentro da constante router
 export default router;
