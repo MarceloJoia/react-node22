@@ -10,14 +10,53 @@ import { Situation } from "../entity/Situation";
 // criar a aplicação Express
 const router = express.Router();
 
-// Criar a rota GET principal URL: http://localhost:8080/situacoes
-router.post("/situacoes", async (req: Request, res: Response) => {
 
+// VISUALIZAR (rota) - Criar a rota para LISTAR as Situações
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/situations
+router.get("/situacoes", async (req: Request, res: Response) => {
+
+    // res.send("Listar");
+    
+    try {
+        // Obter o repositório da entidade Situation
+        const situationRepository = AppDataSource.getRepository(Situation);
+
+        // Recupera todas as situações do banco de dados
+        const situations = await situationRepository.find();
+
+        // Retorna as situações como resposta
+        res.status(200).json(situations);
+
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        // Retornar erro em caso de falha
+        res.status(500).json({
+            message: "Erro ao listar as situações!",
+        });
+        // Mata o processamento
+        return;
+    }
+});
+
+
+
+// CADASTRAR (rota) - Criar a rota para cadastrar a Situação
+// Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/situations
+// A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
+// Dados em formato de objeto
+/*
+{
+    "nameSituation": "Ativo",
+}
+*/
+router.post("/situacoes", async (req: Request, res: Response) => {
     // console.log(`Dados: ${req.body}`);
     // console.log(req.body);
 
     try {
-        // Receber os dados enviados no coro da requisição
+        // Receber os dados enviados no corpo da requisição
         var data = req.body;
 
         // Criar a instancia do repositório de Situação
@@ -39,7 +78,6 @@ router.post("/situacoes", async (req: Request, res: Response) => {
     } catch (error) {
         // Retornar resposta de Erro
         // console.log(error);
-
         res.status(500).json({
             message: "Erro! Situação não pode ser cadastrada.",
         });

@@ -14,18 +14,18 @@ const app = express();
 app.use(express.json());
 
 // Incluir a Controller
-import Auth from './controllers/AuthController';
-import Situation from './controllers/SituationController';
-import ProductCategory from './controllers/ProductCategoryController';
-import ProductSituation from './controllers/ProductSituationController';
-import Product from './controllers/ProductController';
+import AuthController from './controllers/AuthController';
+import SituationController from './controllers/SituationController';
+import ProductCategoryController from './controllers/ProductCategoryController';
+import ProductSituationController from './controllers/ProductSituationController';
+import ProductController from './controllers/ProductController';
 
 // Criar as rotas. Express para gerenciar as requisições, rotas e URLs, entre outra funcionalidades.
-app.use('/', Auth);
-app.use('/', Situation);
-app.use('/', ProductCategory);
-app.use('/', ProductSituation);
-app.use('/', Product);
+app.use('/', AuthController);
+app.use('/', SituationController);
+app.use('/', ProductCategoryController);
+app.use('/', ProductSituationController);
+app.use('/', ProductController);
 
 // Iniciar o serrvidor na porta definida na variável de ambiente .env
 app.listen(process.env.PORT, () => {
