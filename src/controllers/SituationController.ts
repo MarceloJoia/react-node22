@@ -28,7 +28,7 @@ router.get("/situacoes", async (req: Request, res: Response) => {
         return;
 
     } catch (error) {
-        // Retornar erro em caso de falha
+        // Retorn erro em caso de falha
         res.status(500).json({
             message: "Erro ao listar as situações!",
         });
@@ -70,6 +70,7 @@ router.get("/situacoes/:id", async (req: Request, res: Response) => {
         return;
 
     } catch (error) {
+        // Retorn erro em caso de falha
         res.status(500).json({
             message: "Erro! Não encontramos essa situação."
         });
@@ -113,8 +114,7 @@ router.post("/situacoes", async (req: Request, res: Response) => {
         });
 
     } catch (error) {
-        // Retornar resposta de Erro
-        // console.log(error);
+        // Retorn erro em caso de falha
         res.status(500).json({
             message: "Erro! Situação não pode ser cadastrada.",
         });
@@ -174,7 +174,7 @@ router.put("/situacoes/:id", async (req: Request, res: Response) => {
         return;
 
     } catch (error) {
-        // Retornar resposta de Erro
+        // Retorn erro em caso de falha
         res.status(500).json({
             message: "Erro! Situação não pode ser editada.",
         });
@@ -185,7 +185,52 @@ router.put("/situacoes/:id", async (req: Request, res: Response) => {
 
 
 
+// Criar a rota para apagar uma situação
+// Endereço para acessar a API através da aplicação externa com o verbo DELETE: http://localhost:8080/situacoes/:id
+router.delete("/situacoes/:id", async (req: Request, res: Response) => {
 
+    // res.send("Situação apagada");
+
+    try {
+        // Obter o ID da situação a partir dos parâmetros da requisição 
+        const { id } = req.params; // Desestruturação
+
+        // Obter o repositório da entidade Situation
+        const situationRepository = AppDataSource.getRepository(Situation);
+
+        // Buscar a situação no banco de dados pelo ID
+        const situation = await situationRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a situação foi encontrada
+        if (!situation) {
+            res.status(404).json({
+                message: "Atensão! Situação não encontrada."
+            });
+            // Matar a execução
+            return;
+        }
+
+        // Remover a situação do banco de dados
+        await situationRepository.delete(situation);
+
+        // Retornar resposta de sucesso
+        res.status(200).json({
+            massage: "Sucesso! Situação foi apagada.",
+        });
+
+        // Mata o processamento
+        return;
+
+
+    } catch (error) {
+        // Retorn erro em caso de falha
+        res.status(500).json({
+            message: "Erro! Situação não pode ser editada."
+        });
+        // Mata o processamento
+        return;
+    }
+});
 
 
 
