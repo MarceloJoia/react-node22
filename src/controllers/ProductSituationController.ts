@@ -182,6 +182,52 @@ router.put("/produto-situacao/:id", async (req: Request, res: Response) => {
 });
 
 
+// Criar a rota para apagar uma Situação do Produto
+// Endereço para acessar a API através da aplicação externa com o verbo DELETE: http://localhost:8080/produto-situacao/:id
+router.delete("/produto-situacao/:id", async (req: Request, res: Response) => {
+    // res.send("Situação do Produto Deletada");
+
+    try {
+        // Obter o ID da situação a partir dos parâmetros da requisição 
+        const { id } = req.params;
+
+        // Obter o repositório da entidade ProductSituation
+        const poductSituationRepository = AppDataSource.getRepository(ProductSituation);
+
+        // Buscar a situação no banco de dados pelo ID
+        const productSituation = await poductSituationRepository.findOneBy({ id: parseInt(id) });
+
+        // Verificar se a Situação do Produto foi encontrada
+        if (!productSituation) {
+            res.status(404).json({
+                message: "Atensão! Situação do produto não encontrada."
+            });
+            // Matar o processamento
+            return;
+        }
+
+        // Remover a Situação do Produto do banco de dados
+        await poductSituationRepository.delete(productSituation);
+
+        // Retornar resposta de sucesso
+        res.status(200).json({
+            message: "Sucesso! Situação do produto apagada."
+        });
+
+        // Mata o processamento
+        return;
+
+    } catch (error) {
+        // Retornar resposta de Erro
+        res.status(500).json({
+            message: "Erro! Situação do produto não pode ser editada.",
+        });
+        // Mata o processamento
+        return;
+    }
+
+});
+
 
 
 

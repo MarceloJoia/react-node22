@@ -37,6 +37,8 @@ router.get("/produto-categorias", async (req: Request, res: Response) => {
     }
 });
 
+
+
 // Rota para visualizar uma única Categoria do Produto
 // Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/produto-categorias/:id
 // const { id } -> Desestruturação: Pega apenas o que for indicado na desestruturação
@@ -116,7 +118,6 @@ router.post("/produto-categorias", async (req: Request, res: Response) => {
 
 
 
-
 // Criar a rota para editar uma Categoria do Produto
 // Endereço para acessar a API através da aplicação externa com o verbo PUT: http://localhost:8080/produto-categorias/:id
 // A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
@@ -146,7 +147,7 @@ router.put("/produto-categorias/:id", async (req: Request, res: Response) => {
         // Verificar se a ProductSituation foi encontrada
         if (!productCategory) {
             res.status(500).json({
-                message: "Categoria do prtoduto não encontrada."
+                message: "Categoria do produto não encontrada."
             });
             // Mata o processamento
             return;
@@ -160,7 +161,7 @@ router.put("/produto-categorias/:id", async (req: Request, res: Response) => {
 
         // Retornar resposta de sucesso
         res.status(201).json({
-            message: "Sucesso! Categoria do Produto editada.",
+            message: "Sucesso! Categoria do produto editada.",
             productCategory: updateProductCategory
         });
 
@@ -179,10 +180,49 @@ router.put("/produto-categorias/:id", async (req: Request, res: Response) => {
 
 
 
+// Criar a rota para apagar um ProductCategory
+// Endereço para acessar a API através da aplicação externa com o verbo DELETE: http://localhost:8080/produto-categorias/:id
+router.delete("/produto-categorias/:id", async (req: Request, res: Response) => {
+    // res.send("ProductCategory Deletado");
+    try {
+        // Obter o ID da situação a partir dos parâmetros da requisição 
+        const { id } = req.params;
 
+        // Obter o repositório da entidade ProductCategory
+        const productCategoryRepository = AppDataSource.getRepository(ProductCategory);
 
+        // Buscar a ProductCategory no banco de dados pelo ID
+        const productCategory = await productCategoryRepository.findOneBy({ id: parseInt(id) });
 
+        // Verificar se a ProductCategory foi encontrada
+        if (!productCategory) {
+            res.status(404).json({
+                message: "Atenção! Essa Categoria não foi encontrada."
+            });
+            // Matar o processamento
+            return;
+        }
 
+        // Remover a situação do banco de dados
+        productCategoryRepository.delete(productCategory);
+
+        // Retornar resposta de sucesso
+        res.status(200).json({
+            message: "Sucesso! Categoria do produto apagada."
+        });
+
+        // Matar o processamento
+        return;
+
+    } catch (error) {
+        // Retornar resposta de Erro
+        res.status(500).json({
+            message: "Erro! Categoria do Produto não pode ser editada.",
+        });
+        // Mata o processamento
+        return;
+    }
+});
 
 // Exportar a instrução que está dentro da constante router
 export default router;

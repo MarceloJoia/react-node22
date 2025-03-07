@@ -1,13 +1,14 @@
 ## Requisitos
 
+No VSCode fazer a seguinte configuração:
 Path: File/Preferencias/Configurações 
 Procurar por [stickyScroll] e desativar
 
 * Node.js 22 ou superior - Conferir a versão: node -v
 * MySQL 8 ou superior - Conferir a versão: mysql --version
 
-## Como rodar o projeto baixado
 
+## Como rodar o projeto baixado
 Duplicar o arquivo ".env.example" e renomear para ".env".<br>
 Alterar no arquivo .env as credenciais do banco de dados<br>
 
@@ -26,10 +27,10 @@ Executar as migrations para criar as tabelas no banco de dados.
 npx typeorm migration:run -d dist/data-source.js
 ```
 
-Importar a collection do diretório "Thunder-client" para o Thunder Client no VC Code.<br>
+Importar a collection do diretório "Thunder-client" para o Thunder Client no VS Code.<br>
+Alterar a URL em "Base URL" no Thunder-client. Por padrão é "http://localhost:8080".<br>
 
 ## Sequencia para criar o projeto
-
 Criar o arquivo package.
 ```
 npm init
@@ -281,4 +282,121 @@ Entity
 
 
 
+## CRUD Check-List
 
+### Listar
+```
+// VISUALIZAR (rota) - Criar a rota para LISTAR as Situações
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/situacoes
+
+// Pegar o repositório da entidade ProductSituation
+
+// Recupero todas as situações do Produto
+
+// Retono as Situações com resposta - Objeto jSon({})
+
+// Mata o processamento
+return;
+```
+
+
+### Visualizar
+```
+// Rota para visualizar uma situação específica
+// Endereço para acessar a api através da aplicação externa com o verbo GET: http://localhost:8080/situacoes/:id
+// const { id } -> Desestruturação: Pega apenas o que for indicado na desestruturação
+
+// Obter o ID da situação a partir dos parâmetros da requisição [fazer um desestruturação]
+
+// Obter o repositório da entidade Situation do Produto
+
+// Buscar a situação no banco de dados pelo ID
+
+// Verificar se a situação foi encontrada
+
+// Retornar a situação encontrada
+
+// Mata o processamento
+return;
+```
+
+
+### Cadastrar
+```
+// Criar a rota para cadastrar a Situação
+// Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/situacoes
+// A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
+// Dados em formato de objeto
+/*
+{
+    "nameSituation": "Ativo",
+}
+*/
+
+// Criar a instancia do repositório de Situação
+
+// Criar um novo registro da Situação (dados Simulados)
+
+// Salvar o registro no banco de dados
+
+// Retornar resposta de sucesso
+```
+
+
+### Editar
+```
+// Criar a rota para editar uma situação
+// Endereço para acessar a API através da aplicação externa com o verbo PUT: http://localhost:8080/situacoes/:id
+// A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
+// Dados em formato de objeto
+/*
+{
+    "nameSituation": "Ativo"
+}
+*/
+
+// Obter o ID da situação a partir dos parâmetros da requisição
+
+// Receber os dados enviados no corpo da requisição
+
+// Obter o repositório da entidade ProductSituation
+
+// Buscar a ProductSituation no banco de dados pelo ID
+
+// Verificar se a ProductSituation foi encontrada
+
+// Atualizar os dados do ProductSituation
+
+// Salvar as alterações no banco de dados
+
+// Retornar resposta de sucesso
+
+// Mata o processamento
+return;
+```
+
+
+### Deletar
+```
+// Criar a rota para apagar uma situação
+// Endereço para acessar a API através da aplicação externa com o verbo DELETE: http://localhost:8080/situacoes/:id
+
+try {
+        // Obter o ID da situação a partir dos parâmetros da requisição 
+
+        // Obter o repositório da entidade Situation
+
+        // Buscar a situação no banco de dados pelo ID
+
+        // Verificar se a situação foi encontrada
+
+        // Remover a situação do banco de dados
+
+        // Retornar resposta de sucesso
+
+        // Mata o processamento
+        return;
+    } catch (error) {
+        
+    }
+```

@@ -80,7 +80,7 @@ router.get("/situacoes/:id", async (req: Request, res: Response) => {
 });
 
 
-// CADASTRAR (rota) - Criar a rota para cadastrar a Situação
+// Criar a rota para cadastrar a Situação
 // Endereço para acessar a api através da aplicação externa com o verbo POST: http://localhost:8080/situacoes
 // A aplicação externa deve indicar que está enviado os dados em formato de objeto: Content-Type: application/json
 // Dados em formato de objeto
